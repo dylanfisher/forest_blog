@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170107214532) do
+ActiveRecord::Schema.define(version: 20170109185507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "base_blocks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "block_types", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "category"
+    t.boolean  "active",      default: true, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["name"], name: "index_block_types_on_name", unique: true, using: :btree
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -54,6 +69,22 @@ ActiveRecord::Schema.define(version: 20170107214532) do
     t.index ["slug"], name: "index_menus_on_slug", unique: true, using: :btree
   end
 
+  create_table "page_slots", force: :cascade do |t|
+    t.integer  "page_id"
+    t.integer  "page_version_id"
+    t.integer  "blockable_id"
+    t.string   "blockable_type"
+    t.integer  "blockable_version_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["blockable_id", "blockable_type"], name: "index_page_slots_on_blockable_id_and_blockable_type", using: :btree
+    t.index ["blockable_type", "blockable_id"], name: "index_page_slots_on_blockable_type_and_blockable_id", using: :btree
+    t.index ["blockable_type", "blockable_version_id"], name: "index_page_slots_on_blockable_type_and_blockable_version_id", using: :btree
+    t.index ["blockable_version_id", "blockable_type"], name: "index_page_slots_on_blockable_version_id_and_blockable_type", using: :btree
+    t.index ["page_id"], name: "index_page_slots_on_page_id", using: :btree
+    t.index ["page_version_id"], name: "index_page_slots_on_page_version_id", using: :btree
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string   "title"
     t.string   "slug"
@@ -74,6 +105,12 @@ ActiveRecord::Schema.define(version: 20170107214532) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_settings_on_slug", unique: true, using: :btree
+  end
+
+  create_table "title_blocks", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_groups", force: :cascade do |t|

@@ -2,9 +2,6 @@
 <% content_for :page_featured_image, @page.featured_image.attachment.url(:large) if @page.featured_image.present? %>
 
 <%= content_tag(:h1, @page.title) if @page.title.present? %>
-
-<h1>This is the host app's show page</h1>
-
 <p>
   <b>Description:</b>
   <%= @page.description %>
@@ -14,3 +11,13 @@
   <b>Status:</b>
   <%= @page.status %>
 </p>
+
+<p>This is the host app's show page</p>
+<p>Content Blocks:</p>
+
+<% @page.blocks.each do |block| %>
+  <div class="well">
+    <p><%= block.class.name %> <%= block.id %></p>
+    <p><%= block.try(:title) %></p>
+  </div>
+<% end %>
