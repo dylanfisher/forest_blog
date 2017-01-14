@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: forest_blog_production
-  username: forest_blog
+  username: <%= ENV['FOREST_BLOG_DATABASE_USER'] %>
   password: <%= ENV['FOREST_BLOG_DATABASE_PASSWORD'] %>
