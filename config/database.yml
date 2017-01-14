@@ -83,3 +83,4 @@ production:
   database: db_forest
   username: <%= ENV['DB_USER'] %>
   password: <%= ENV['DB_PASS'] %>
+  url: <%= ENV['POSTGRESQL_URL'] %>

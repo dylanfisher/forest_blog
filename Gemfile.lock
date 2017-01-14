@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: 0c391cd9aa8e567a3b636a0e7da9f0c7c76fb418
+  revision: 960a8e902e3d6e6f0b66899589cd2fbd2c095985
   specs:
     forest (0.1.0)
       bootstrap-sass (~> 3.3.6)
@@ -18,6 +18,7 @@ GIT
       pry-rails
       pundit
       rails (~> 5.0.1)
+      rails_12factor
       redcarpet
       sass-rails (~> 5.0)
       simple_form
@@ -210,6 +211,11 @@ GEM
       nokogiri (~> 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (5.0.1)
       actionpack (= 5.0.1)
       activesupport (= 5.0.1)
