@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170109185507) do
+ActiveRecord::Schema.define(version: 20170111053549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,8 +75,9 @@ ActiveRecord::Schema.define(version: 20170109185507) do
     t.integer  "blockable_id"
     t.string   "blockable_type"
     t.integer  "blockable_version_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "position",             default: 0, null: false
     t.index ["blockable_id", "blockable_type"], name: "index_page_slots_on_blockable_id_and_blockable_type", using: :btree
     t.index ["blockable_type", "blockable_id"], name: "index_page_slots_on_blockable_type_and_blockable_id", using: :btree
     t.index ["blockable_type", "blockable_version_id"], name: "index_page_slots_on_blockable_type_and_blockable_version_id", using: :btree
@@ -105,6 +106,12 @@ ActiveRecord::Schema.define(version: 20170109185507) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_settings_on_slug", unique: true, using: :btree
+  end
+
+  create_table "text_blocks", force: :cascade do |t|
+    t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "title_blocks", force: :cascade do |t|
