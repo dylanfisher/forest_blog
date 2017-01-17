@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: 960a8e902e3d6e6f0b66899589cd2fbd2c095985
+  revision: 12909964e1f2ebefa792f3be88baee892ca5cdc2
   specs:
     forest (0.1.0)
       bootstrap-sass (~> 3.3.6)
@@ -293,5 +293,8 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
 
+RUBY VERSION
+   ruby 2.4.0p0
+
 BUNDLED WITH
-   1.13.6
+   1.13.7

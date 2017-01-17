@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170114063747) do
+ActiveRecord::Schema.define(version: 20170111053549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,14 +74,12 @@ ActiveRecord::Schema.define(version: 20170114063747) do
     t.integer  "page_version_id"
     t.integer  "blockable_id"
     t.string   "blockable_type"
-    t.integer  "blockable_version_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.integer  "position",             default: 0, null: false
+    t.integer  "blockable_previous_version_id"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.integer  "position",                      default: 0, null: false
     t.index ["blockable_id", "blockable_type"], name: "index_page_slots_on_blockable_id_and_blockable_type", using: :btree
     t.index ["blockable_type", "blockable_id"], name: "index_page_slots_on_blockable_type_and_blockable_id", using: :btree
-    t.index ["blockable_type", "blockable_version_id"], name: "index_page_slots_on_blockable_type_and_blockable_version_id", using: :btree
-    t.index ["blockable_version_id", "blockable_type"], name: "index_page_slots_on_blockable_version_id_and_blockable_type", using: :btree
     t.index ["page_id"], name: "index_page_slots_on_page_id", using: :btree
     t.index ["page_version_id"], name: "index_page_slots_on_page_version_id", using: :btree
   end
@@ -135,12 +133,12 @@ ActiveRecord::Schema.define(version: 20170114063747) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",   null: false
-    t.string   "encrypted_password",     default: "",   null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,    null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -148,9 +146,8 @@ ActiveRecord::Schema.define(version: 20170114063747) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "slug"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.text     "settings",               default: "{}", null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["slug"], name: "index_users_on_slug", unique: true, using: :btree
