@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170114063747) do
+ActiveRecord::Schema.define(version: 20170207054935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20170114063747) do
     t.datetime "updated_at",                    null: false
     t.integer  "status",            default: 1, null: false
     t.integer  "featured_image_id"
+    t.text     "page_slot_cache"
     t.index ["featured_image_id"], name: "index_pages_on_featured_image_id", using: :btree
     t.index ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
     t.index ["status"], name: "index_pages_on_status", using: :btree
