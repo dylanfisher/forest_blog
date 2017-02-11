@@ -1,28 +1,28 @@
 GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: 949ccfbc850140f2b2e0939be53547067d40bcd3
+  revision: 23c21dc14fc669113008f58d3f27c725a96eeb64
   specs:
     forest (0.1.0)
-      bootstrap-sass (~> 3.3.6)
+      bootstrap-sass
       cocoon
       devise
       faker
-      friendly_id (~> 5.2)
+      friendly_id
       has_scope
       jquery-fileupload-rails
       jquery-rails-cdn
       jquery-ui-rails
       kaminari
       paper_trail
-      paperclip (~> 5.0.0)
+      paperclip
       pry-rails
       pundit
-      rails (~> 5.0.1)
+      rails
       rails_12factor
       redcarpet
-      sass-rails (~> 5.0)
+      sass-rails
       simple_form
-      turbolinks (~> 5)
+      turbolinks
 
 GEM
   remote: https://rubygems.org/
@@ -150,9 +150,10 @@ GEM
       activerecord
       kaminari-core (= 1.0.1)
     kaminari-core (1.0.1)
-    listen (3.0.8)
+    listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+      ruby_dep (~> 1.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.11)
@@ -177,7 +178,7 @@ GEM
     paper_trail (6.0.2)
       activerecord (>= 4.0, < 5.2)
       request_store (~> 1.1)
-    paperclip (5.0.0)
+    paperclip (5.1.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       cocaine (~> 0.5.5)
@@ -232,6 +233,7 @@ GEM
     request_store (1.3.2)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    ruby_dep (1.5.0)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -282,20 +284,20 @@ DEPENDENCIES
   figaro
   forest!
   guard
-  guard-livereload (~> 2.5)
-  jbuilder (~> 2.5)
+  guard-livereload
+  jbuilder
   jquery-rails
-  listen (~> 3.0.5)
-  pg (~> 0.18)
+  listen
+  pg
   pry-rails
-  puma (~> 3.0)
-  rails (~> 5.0.1)
-  sass-rails (~> 5.0)
+  puma
+  rails
+  sass-rails
   spring
-  spring-watcher-listen (~> 2.0.0)
-  turbolinks (~> 5)
+  spring-watcher-listen
+  turbolinks
   tzinfo-data
-  uglifier (>= 1.3.0)
+  uglifier
 
 RUBY VERSION
    ruby 2.4.0p0
