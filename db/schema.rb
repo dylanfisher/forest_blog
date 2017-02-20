@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207054935) do
+ActiveRecord::Schema.define(version: 20170219193739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20170207054935) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["name"], name: "index_block_types_on_name", unique: true, using: :btree
+  end
+
+  create_table "blockable_records", force: :cascade do |t|
+    t.string   "blockable_record_type"
+    t.integer  "blockable_record_id"
+    t.text     "slot_cache"
+    t.text     "block_cache"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["blockable_record_id", "blockable_record_type"], name: "index_block_records_on_block_record_id_and_block_record_type", using: :btree
+    t.index ["blockable_record_type", "blockable_record_id"], name: "index_block_records_on_block_record_type_and_block_record_id", using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -78,7 +89,11 @@ ActiveRecord::Schema.define(version: 20170207054935) do
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.integer  "position",                      default: 0, null: false
+    t.string   "blockable_record_type"
+    t.integer  "blockable_record_id"
     t.index ["blockable_id", "blockable_type"], name: "index_page_slots_on_blockable_id_and_blockable_type", using: :btree
+    t.index ["blockable_record_id", "blockable_record_type"], name: "index_page_slots_on_block_record_id_and_block_record_type", using: :btree
+    t.index ["blockable_record_type", "blockable_record_id"], name: "index_page_slots_on_block_record_type_and_block_record_id", using: :btree
     t.index ["blockable_type", "blockable_id"], name: "index_page_slots_on_blockable_type_and_blockable_id", using: :btree
     t.index ["page_id"], name: "index_page_slots_on_page_id", using: :btree
     t.index ["page_version_id"], name: "index_page_slots_on_page_version_id", using: :btree
@@ -102,8 +117,9 @@ ActiveRecord::Schema.define(version: 20170207054935) do
     t.string   "title"
     t.string   "slug"
     t.text     "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "value_type", default: "text"
     t.index ["slug"], name: "index_settings_on_slug", unique: true, using: :btree
   end
 
