@@ -1,4 +1,4 @@
-# This migration comes from forest (originally 20170109175932)
+# This migration comes from forest_engine (originally 20170109175932)
 class CreateBlockTypes < ActiveRecord::Migration[5.0]
   def change
     create_table :block_types do |t|

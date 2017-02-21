@@ -1,4 +1,4 @@
-# This migration comes from forest (originally 20161225212258)
+# This migration comes from forest_engine (originally 20161225212258)
 class CreateJoinTableUserGroupsUsers < ActiveRecord::Migration[5.0]
   def change
     create_join_table :user_groups, :users do |t|

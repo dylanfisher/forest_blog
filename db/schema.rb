@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220204459) do
+ActiveRecord::Schema.define(version: 20170221033555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,17 @@ ActiveRecord::Schema.define(version: 20170220204459) do
   create_table "base_blocks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "block_records", force: :cascade do |t|
+    t.string   "block_record_type"
+    t.integer  "block_record_id"
+    t.text     "slot_cache"
+    t.text     "block_cache"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["block_record_id", "block_record_type"], name: "index_block_records_on_block_record_id_and_block_record_type", using: :btree
+    t.index ["block_record_type", "block_record_id"], name: "index_block_records_on_block_record_type_and_block_record_id", using: :btree
   end
 
   create_table "block_types", force: :cascade do |t|
@@ -28,17 +39,6 @@ ActiveRecord::Schema.define(version: 20170220204459) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["name"], name: "index_block_types_on_name", unique: true, using: :btree
-  end
-
-  create_table "blockable_records", force: :cascade do |t|
-    t.string   "blockable_record_type"
-    t.integer  "blockable_record_id"
-    t.text     "slot_cache"
-    t.text     "block_cache"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.index ["blockable_record_id", "blockable_record_type"], name: "index_block_records_on_block_record_id_and_block_record_type", using: :btree
-    t.index ["blockable_record_type", "blockable_record_id"], name: "index_block_records_on_block_record_type_and_block_record_id", using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -83,18 +83,21 @@ ActiveRecord::Schema.define(version: 20170220204459) do
   create_table "page_slots", force: :cascade do |t|
     t.integer  "page_id"
     t.integer  "page_version_id"
-    t.integer  "blockable_id"
-    t.string   "blockable_type"
-    t.integer  "blockable_previous_version_id"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.integer  "position",                      default: 0, null: false
-    t.string   "blockable_record_type"
-    t.integer  "blockable_record_id"
-    t.index ["blockable_id", "blockable_type"], name: "index_page_slots_on_blockable_id_and_blockable_type", using: :btree
-    t.index ["blockable_record_id", "blockable_record_type"], name: "index_page_slots_on_block_record_id_and_block_record_type", using: :btree
-    t.index ["blockable_record_type", "blockable_record_id"], name: "index_page_slots_on_block_record_type_and_block_record_id", using: :btree
-    t.index ["blockable_type", "blockable_id"], name: "index_page_slots_on_blockable_type_and_blockable_id", using: :btree
+    t.integer  "block_id"
+    t.string   "block_type"
+    t.integer  "block_version_id"
+    t.text     "page_slot_cache"
+    t.integer  "position",          default: 0, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "block_record_type"
+    t.integer  "block_record_id"
+    t.index ["block_id", "block_type"], name: "index_page_slots_on_block_id_and_block_type", using: :btree
+    t.index ["block_record_id", "block_record_type"], name: "index_page_slots_on_block_record_id_and_block_record_type", using: :btree
+    t.index ["block_record_type", "block_record_id"], name: "index_page_slots_on_block_record_type_and_block_record_id", using: :btree
+    t.index ["block_type", "block_id"], name: "index_page_slots_on_block_type_and_block_id", using: :btree
+    t.index ["block_type", "block_version_id"], name: "index_page_slots_on_block_type_and_block_version_id", using: :btree
+    t.index ["block_version_id", "block_type"], name: "index_page_slots_on_block_version_id_and_block_type", using: :btree
     t.index ["page_id"], name: "index_page_slots_on_page_id", using: :btree
     t.index ["page_version_id"], name: "index_page_slots_on_page_version_id", using: :btree
   end
@@ -103,11 +106,10 @@ ActiveRecord::Schema.define(version: 20170220204459) do
     t.string   "title"
     t.string   "slug"
     t.text     "description"
+    t.integer  "status",            default: 1, null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
-    t.integer  "status",            default: 1, null: false
     t.integer  "featured_image_id"
-    t.text     "page_slot_cache"
     t.index ["featured_image_id"], name: "index_pages_on_featured_image_id", using: :btree
     t.index ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
     t.index ["status"], name: "index_pages_on_status", using: :btree
@@ -117,9 +119,9 @@ ActiveRecord::Schema.define(version: 20170220204459) do
     t.string   "title"
     t.string   "slug"
     t.text     "value"
+    t.string   "value_type", default: "text"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.string   "value_type", default: "text"
     t.index ["slug"], name: "index_settings_on_slug", unique: true, using: :btree
   end
 
@@ -150,12 +152,12 @@ ActiveRecord::Schema.define(version: 20170220204459) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",   null: false
-    t.string   "encrypted_password",     default: "",   null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,    null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -163,9 +165,8 @@ ActiveRecord::Schema.define(version: 20170220204459) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "slug"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.text     "settings",               default: "{}", null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["slug"], name: "index_users_on_slug", unique: true, using: :btree

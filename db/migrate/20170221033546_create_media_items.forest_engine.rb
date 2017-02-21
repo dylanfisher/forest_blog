@@ -1,4 +1,4 @@
-# This migration comes from forest (originally 20161219231741)
+# This migration comes from forest_engine (originally 20161219231741)
 class CreateMediaItems < ActiveRecord::Migration[5.0]
   def change
     create_table :media_items do |t|

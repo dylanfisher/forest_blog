@@ -1,4 +1,4 @@
-# This migration comes from forest (originally 20161225212605)
+# This migration comes from forest_engine (originally 20161225212605)
 class SeedUserGroups < ActiveRecord::Migration[5.0]
   def up
     UserGroup.find_or_create_by(name: 'admin')
