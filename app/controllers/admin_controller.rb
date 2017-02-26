@@ -1,9 +1,8 @@
 class AdminController < DashboardController
-  # def index
-  #   super
+  def index
+    super
 
-  #   # additional_resources = ['Artist'].collect(&:safe_constantize).reject(&:blank?)
-  #   additional_resources = []
-  #   @resources = (@resources + additional_resources).sort_by(&:name)
-  # end
+    additional_resources = %w(Artist Artwork Exhibition).collect(&:safe_constantize).reject(&:blank?)
+    @resources = (@resources + additional_resources).sort_by(&:name)
+  end
 end

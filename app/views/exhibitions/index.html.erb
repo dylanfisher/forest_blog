@@ -1,0 +1,48 @@
+<% content_for :index_header_body do %>
+  <%= dropdown_select_form url: exhibitions_path,
+    id: 'by_status',
+    select_options: Exhibition.statuses.keys.to_a.collect{ |x| [x.titleize, x] },
+    title: 'All Statuses' %>
+<% end %>
+<%= render 'admin/index_header', records: @exhibitions, model_name: 'Exhibition' %>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th><%= table_sorter title: 'ID', path: :exhibitions_path, scope: :by_id, default_order: :desc %></th>
+        <th><%= table_sorter title: 'Slug', path: :exhibitions_path, scope: :by_slug, default_order: :asc %></th>
+        <th>Title</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Author</th>
+        <th><%= table_sorter title: 'Created&nbsp;at'.html_safe, path: :exhibitions_path, scope: :by_created_at, default_order: :desc %></th>
+        <th><%= table_sorter title: 'Updated&nbsp;at'.html_safe, path: :exhibitions_path, scope: :by_updated_at, default_order: :desc %></th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @exhibitions.each do |exhibition| %>
+        <tr>
+          <td><%= status_indicator exhibition %></td>
+          <td><%= exhibition.id %></td>
+          <td><%= exhibition.slug %></td>
+          <td><%= exhibition.title %></td>
+          <td><%= exhibition.start_date %></td>
+          <td><%= exhibition.end_date %></td>
+          <td><%= User.find(exhibition.versions.last&.version_author)&.display_name if exhibition.versions.last&.version_author %></td>
+          <td><%= exhibition.created_at.to_formatted_s(:short) %></td>
+          <td><%= exhibition.updated_at.to_formatted_s(:short) %></td>
+          <td width="1"><%= link_to 'Edit', edit_exhibition_path(exhibition), class: 'btn btn-xs btn-primary', role: 'button' %></td>
+          <td width="1"><%= link_to 'Show', show_exhibition_path(exhibition), class: 'btn btn-xs btn-info', role: 'button' %></td>
+          <td width="1"><%= link_to 'Versions', exhibition_versions_path(exhibition), class: 'btn btn-xs btn-warning', role: 'button' %></td>
+          <td width="1"><%= link_to 'Destroy', exhibition, method: :delete, class: 'btn btn-xs btn-danger', role: 'button', data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= paginate @exhibitions %>

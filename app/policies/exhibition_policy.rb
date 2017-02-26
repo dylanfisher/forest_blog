@@ -1,0 +1,2 @@
+class ExhibitionPolicy < BlockRecordPolicy
+end

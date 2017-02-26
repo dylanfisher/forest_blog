@@ -1,0 +1,5 @@
+<%= content_tag :div, class: 'exhibition' do %>
+  <%= content_tag :h1, link_to(md(exhibition.title), show_exhibition_path(exhibition)) %>
+  <%= content_tag :h6, "#{exhibition.start_date}–#{exhibition.end_date}" %>
+  <%= content_tag :p, md(exhibition.description) if exhibition.description.present? %>
+<% end %>

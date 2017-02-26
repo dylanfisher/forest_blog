@@ -1,0 +1,31 @@
+<p>Find me in app/views/forest/artists/show.html.erb</p>
+
+<% cache @artist do %>
+  <%# content_for :page_description, @artist.description if @artist.try(:description).present? %>
+  <%# content_for :page_featured_image, @artist.featured_image.attachment.url(:large) if @artist.try(:featured_image).present? %>
+
+  <p>
+    <b>First Name</b>
+    <%= @artist.first_name %>
+  </p>
+  <p>
+    <b>Last Name</b>
+    <%= @artist.last_name %>
+  </p>
+  <p>
+    <b>Bio</b>
+    <%= @artist.bio %>
+  </p>
+
+  <b>Exhibitions</b>
+  <%= render partial: 'exhibitions/exhibition', collection: @artist.exhibitions %>
+  <b>Artworks</b>
+  <%= render partial: 'artworks/artwork', collection: @artist.artworks %>
+
+  <p>
+    <b>Status:</b>
+    <%= @artist.status %>
+  </p>
+
+  <%= render partial: 'blocks/show', collection: @artist.blocks, as: 'block' %>
+<% end %>

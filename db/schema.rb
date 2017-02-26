@@ -10,10 +10,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170225185150) do
+ActiveRecord::Schema.define(version: 20170226042233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artists", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "bio"
+    t.string   "slug"
+    t.integer  "status",     default: 1, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["slug"], name: "index_artists_on_slug", unique: true, using: :btree
+    t.index ["status"], name: "index_artists_on_status", using: :btree
+  end
+
+  create_table "artists_artworks", id: false, force: :cascade do |t|
+    t.integer "artist_id",  null: false
+    t.integer "artwork_id", null: false
+    t.index ["artist_id", "artwork_id"], name: "index_artists_artworks_on_artist_id_and_artwork_id", using: :btree
+    t.index ["artwork_id", "artist_id"], name: "index_artists_artworks_on_artwork_id_and_artist_id", using: :btree
+  end
+
+  create_table "artists_exhibitions", id: false, force: :cascade do |t|
+    t.integer "exhibition_id", null: false
+    t.integer "artist_id",     null: false
+    t.index ["artist_id", "exhibition_id"], name: "index_artists_exhibitions_on_artist_id_and_exhibition_id", using: :btree
+    t.index ["exhibition_id", "artist_id"], name: "index_artists_exhibitions_on_exhibition_id_and_artist_id", using: :btree
+  end
+
+  create_table "artworks", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "date"
+    t.string   "slug"
+    t.integer  "status",      default: 1, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["slug"], name: "index_artworks_on_slug", unique: true, using: :btree
+    t.index ["status"], name: "index_artworks_on_status", using: :btree
+  end
+
+  create_table "artworks_exhibitions", id: false, force: :cascade do |t|
+    t.integer "exhibition_id", null: false
+    t.integer "artwork_id",    null: false
+    t.index ["artwork_id", "exhibition_id"], name: "index_artworks_exhibitions_on_artwork_id_and_exhibition_id", using: :btree
+    t.index ["exhibition_id", "artwork_id"], name: "index_artworks_exhibitions_on_exhibition_id_and_artwork_id", using: :btree
+  end
 
   create_table "base_blocks", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -39,6 +84,19 @@ ActiveRecord::Schema.define(version: 20170225185150) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["name"], name: "index_block_types_on_name", unique: true, using: :btree
+  end
+
+  create_table "exhibitions", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "slug"
+    t.integer  "status",      default: 1, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["slug"], name: "index_exhibitions_on_slug", unique: true, using: :btree
+    t.index ["status"], name: "index_exhibitions_on_status", using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

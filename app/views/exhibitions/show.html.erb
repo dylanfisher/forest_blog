@@ -1,0 +1,35 @@
+<p>Find me in app/views/forest/exhibitions/show.html.erb</p>
+
+<% cache @exhibition do %>
+  <%# content_for :page_description, @exhibition.description if @exhibition.try(:description).present? %>
+  <%# content_for :page_featured_image, @exhibition.featured_image.attachment.url(:large) if @exhibition.try(:featured_image).present? %>
+
+  <p>
+    <b>Title</b>
+    <%= @exhibition.title %>
+  </p>
+  <p>
+    <b>Description</b>
+    <%= @exhibition.description %>
+  </p>
+  <p>
+    <b>Start Date</b>
+    <%= @exhibition.start_date %>
+  </p>
+  <p>
+    <b>End Date</b>
+    <%= @exhibition.end_date %>
+  </p>
+
+  <b>Artists</b>
+  <%= render partial: 'artists/artist', collection: @exhibition.artists %>
+  <b>Artwork</b>
+  <%= render partial: 'artworks/artwork', collection: @exhibition.artworks %>
+
+  <p>
+    <b>Status:</b>
+    <%= @exhibition.status %>
+  </p>
+
+  <%= render partial: 'blocks/show', collection: @exhibition.blocks, as: 'block' %>
+<% end %>
