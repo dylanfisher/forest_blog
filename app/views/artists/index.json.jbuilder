@@ -3,5 +3,5 @@ json.per_page @artists.default_per_page
 
 json.data @artists do |item|
   json.id item.id
-  json.text item.name
+  json.text item.to_label
 end

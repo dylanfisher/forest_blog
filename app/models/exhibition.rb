@@ -15,6 +15,12 @@ class Exhibition < ApplicationRecord
   has_and_belongs_to_many :artists
   has_and_belongs_to_many :artworks
 
+  scope :title_or_id_like, -> string { where('exhibitions.title ILIKE ? OR exhibitions.id = ?', "%#{string}%", string.to_i) }
+
+  def to_label
+    "#{id} - #{title}"
+  end
+
   private
 
     def should_generate_new_friendly_id?

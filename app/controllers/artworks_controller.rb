@@ -8,7 +8,7 @@ class ArtworksController < ForestController
   # before_action :set_paper_trail_whodunnit
 
   has_scope :by_status
-  has_scope :title_like
+  has_scope :title_or_id_like
 
   def index
     @artworks = apply_scopes(Artwork).by_id.page params[:page]

@@ -8,6 +8,7 @@ class ExhibitionsController < ForestController
   # before_action :set_paper_trail_whodunnit
 
   has_scope :by_status
+  has_scope :title_or_id_like
 
   def index
     @exhibitions = apply_scopes(Exhibition).by_id.page params[:page]

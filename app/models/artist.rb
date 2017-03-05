@@ -18,10 +18,14 @@ class Artist < ApplicationRecord
   validates :last_name, presence: true
 
   scope :by_name, -> (orderer = :asc) { order(last_name: orderer, first_name: orderer, id: :desc) }
-  scope :name_like, -> (string) { where("(first_name || ' ' || last_name) ILIKE ?", "%#{string}%") }
+  scope :name_or_id_like, -> string { where('(artists.first_name || ' ' || artists.last_name) ILIKE ? OR artists.id = ?', "%#{string}%", string.to_i) }
 
   def name
     [first_name, last_name].reject(&:blank?).join(' ')
+  end
+
+  def to_label
+    "#{id} - #{name}"
   end
 
   private

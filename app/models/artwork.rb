@@ -17,7 +17,11 @@ class Artwork < ApplicationRecord
 
   belongs_to :featured_image, class_name: 'MediaItem'
 
-  scope :title_like, -> string { where('artworks.title ILIKE ?', "%#{string}%") }
+  scope :title_or_id_like, -> string { where('artworks.title ILIKE ? OR artworks.id = ?', "%#{string}%", string.to_i) }
+
+  def to_label
+    "#{id} - #{title}"
+  end
 
   private
 
