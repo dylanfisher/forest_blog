@@ -8,10 +8,10 @@ class ArtistsController < ForestController
   # before_action :set_paper_trail_whodunnit
 
   has_scope :by_status
+  has_scope :name_like
 
   def index
-    @artists = apply_scopes(Artist).by_id.page params[:page]
-    authorize @artists
+    @artists = apply_scopes(Artist).by_name.page params[:page]
   end
 
   def versions

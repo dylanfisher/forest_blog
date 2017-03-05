@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: 4998952142ff8b11380c413e865ec793f4c8b723
+  revision: c3a0a2747b25f20d1ebeaec5a8bddc38c0b36113
   specs:
     forest (0.1.0)
       bootstrap-sass
@@ -96,7 +96,7 @@ GEM
     execjs (2.7.0)
     faker (1.7.3)
       i18n (~> 0.5)
-    ffi (1.9.17)
+    ffi (1.9.18)
     figaro (1.1.1)
       thor (~> 0.14)
     formatador (0.2.5)

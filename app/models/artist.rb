@@ -17,6 +17,9 @@ class Artist < ApplicationRecord
 
   validates :last_name, presence: true
 
+  scope :by_name, -> (orderer = :asc) { order(last_name: orderer, first_name: orderer, id: :desc) }
+  scope :name_like, -> (string) { where("(first_name || ' ' || last_name) ILIKE ?", "%#{string}%") }
+
   def name
     [first_name, last_name].reject(&:blank?).join(' ')
   end
