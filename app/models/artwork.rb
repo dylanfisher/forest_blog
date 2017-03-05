@@ -15,6 +15,8 @@ class Artwork < ApplicationRecord
   has_and_belongs_to_many :artists
   has_and_belongs_to_many :exhibitions
 
+  belongs_to :featured_image, class_name: 'MediaItem'
+
   scope :title_like, -> string { where('artworks.title ILIKE ?', "%#{string}%") }
 
   private

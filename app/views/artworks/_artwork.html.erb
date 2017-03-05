@@ -1,4 +1,5 @@
 <%= content_tag :div, class: 'artwork' do %>
+  <%= responsive_image artwork.featured_image %>
   <%= content_tag :p, link_to(md(artwork.title), show_artwork_path(artwork)) %>
   <%= content_tag :p, artwork.date %>
   <%= content_tag :p, md(artwork.description) if artwork.description.present? %>

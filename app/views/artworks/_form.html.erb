@@ -26,6 +26,10 @@
                 <%= f.input :slug %>
                 <%= f.button :submit, class: 'btn-success' %>
               </div>
+              <div class="col-sm-6">
+                <%= media_item_chooser @artwork, field_name: 'artwork_featured_image_id', img_src: @artwork.featured_image&.attachment&.try(:url, :large) %>
+                <%= f.association :featured_image, as: :hidden %>
+              </div>
             </div>
           </div>
         </div>

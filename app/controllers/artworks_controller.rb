@@ -118,7 +118,7 @@ class ArtworksController < ForestController
   private
 
     def artwork_params
-      params.require(:artwork).permit(:title, :slug, :title, :description, :date, :status, artist_ids: [], exhibition_ids: [],
+      params.require(:artwork).permit(:title, :slug, :title, :description, :date, :status, :featured_image_id, artist_ids: [], exhibition_ids: [],
         page_slots_attributes: [:id, :_destroy, :block_id, :block_type, :block_previous_version_id, :position, :block_record_type, :block_record_id, *BlockType.block_type_params])
     end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226042233) do
+ActiveRecord::Schema.define(version: 20170305165132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,9 +46,11 @@ ActiveRecord::Schema.define(version: 20170226042233) do
     t.text     "description"
     t.date     "date"
     t.string   "slug"
-    t.integer  "status",      default: 1, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "status",            default: 1, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "featured_image_id"
+    t.index ["featured_image_id"], name: "index_artworks_on_featured_image_id", using: :btree
     t.index ["slug"], name: "index_artworks_on_slug", unique: true, using: :btree
     t.index ["status"], name: "index_artworks_on_status", using: :btree
   end

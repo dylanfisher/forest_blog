@@ -4,18 +4,7 @@
   <%# content_for :page_description, @artwork.description if @artwork.try(:description).present? %>
   <%# content_for :page_featured_image, @artwork.featured_image.attachment.url(:large) if @artwork.try(:featured_image).present? %>
 
-  <p>
-    <b>Title</b>
-    <%= @artwork.title %>
-  </p>
-  <p>
-    <b>Description</b>
-    <%= @artwork.description %>
-  </p>
-  <p>
-    <b>Date</b>
-    <%= @artwork.date %>
-  </p>
+  <%= render 'artwork', artwork: @artwork %>
 
   <b>Artists</b>
   <%= render partial: 'artists/artist', collection: @artwork.artists %>
