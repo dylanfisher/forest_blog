@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-if Rails.env.development?
+# if Rails.env.development?
 
   (100 - Page.count).times do
     Page.create(
@@ -46,4 +46,4 @@ if Rails.env.development?
     end
   end
 
-end
+# end
