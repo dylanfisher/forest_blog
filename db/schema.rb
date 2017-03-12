@@ -143,9 +143,11 @@ ActiveRecord::Schema.define(version: 20170312042932) do
   create_table "page_groups", force: :cascade do |t|
     t.string  "title"
     t.string  "slug"
-    t.integer "level",          default: 0, null: false
+    t.integer "level",            default: 0, null: false
     t.integer "page_id"
     t.integer "parent_page_id"
+    t.integer "ancestor_page_id"
+    t.index ["ancestor_page_id"], name: "index_page_groups_on_ancestor_page_id", using: :btree
     t.index ["page_id"], name: "index_page_groups_on_page_id", using: :btree
     t.index ["parent_page_id"], name: "index_page_groups_on_parent_page_id", using: :btree
     t.index ["slug"], name: "index_page_groups_on_slug", using: :btree
