@@ -125,9 +125,9 @@ class ArtworksController < ForestController
     def set_artwork
       if action_name == 'show'
         # TODO: Published scope
-        @artwork = Artwork.friendly.find(params[:id]) # Don't eager load associations when cached in show
+        @artwork = Artwork.find_by_slug(params[:id]) # Don't eager load associations when cached in show
       else
-        @artwork = Artwork.includes(page_slots: :block).friendly.find(params[:id])
+        @artwork = Artwork.includes(page_slots: :block).find_by_slug(params[:id])
       end
 
       @record = @artwork

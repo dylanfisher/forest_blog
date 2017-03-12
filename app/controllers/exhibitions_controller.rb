@@ -125,9 +125,9 @@ class ExhibitionsController < ForestController
     def set_exhibition
       if action_name == 'show'
         # TODO: Published scope
-        @exhibition = Exhibition.friendly.find(params[:id]) # Don't eager load associations when cached in show
+        @exhibition = Exhibition.find_by_slug(params[:id]) # Don't eager load associations when cached in show
       else
-        @exhibition = Exhibition.includes(page_slots: :block).friendly.find(params[:id])
+        @exhibition = Exhibition.includes(page_slots: :block).find_by_slug(params[:id])
       end
 
       @record = @exhibition

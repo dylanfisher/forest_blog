@@ -124,9 +124,9 @@ class ArtistsController < ForestController
     def set_artist
       if action_name == 'show'
         # TODO: Published scope
-        @artist = Artist.friendly.find(params[:id]) # Don't eager load associations when cached in show
+        @artist = Artist.find_by_slug(params[:id]) # Don't eager load associations when cached in show
       else
-        @artist = Artist.includes(page_slots: :block).friendly.find(params[:id])
+        @artist = Artist.includes(page_slots: :block).find_by_slug(params[:id])
       end
 
       @record = @artist
