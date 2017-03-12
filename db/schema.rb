@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305165132) do
+ActiveRecord::Schema.define(version: 20170312042932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,6 +138,17 @@ ActiveRecord::Schema.define(version: 20170305165132) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_menus_on_slug", unique: true, using: :btree
+  end
+
+  create_table "page_groups", force: :cascade do |t|
+    t.string  "title"
+    t.string  "slug"
+    t.integer "level",          default: 0, null: false
+    t.integer "page_id"
+    t.integer "parent_page_id"
+    t.index ["page_id"], name: "index_page_groups_on_page_id", using: :btree
+    t.index ["parent_page_id"], name: "index_page_groups_on_parent_page_id", using: :btree
+    t.index ["slug"], name: "index_page_groups_on_slug", using: :btree
   end
 
   create_table "page_slots", force: :cascade do |t|
