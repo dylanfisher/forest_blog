@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: 30a7b27513b6d7dadd8b2fa3cec78d25e01ab1c2
+  revision: e2ff9592ccd848b83af4d7287fc89eeab552a48f
   specs:
     forest (0.1.0)
       bootstrap-sass
@@ -14,7 +14,6 @@ GIT
       kaminari
       paper_trail
       paperclip
-      pry-rails
       pundit
       rails
       redcarpet
@@ -70,7 +69,6 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
-    byebug (9.0.6)
     climate_control (0.1.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
@@ -269,7 +267,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  byebug
   connection_pool
   dalli
   figaro
@@ -287,11 +284,10 @@ DEPENDENCIES
   spring
   spring-watcher-listen
   turbolinks
-  tzinfo-data
   uglifier
 
 RUBY VERSION
-   ruby 2.4.0p0
+   ruby 2.4.1p111
 
 BUNDLED WITH
    1.14.6

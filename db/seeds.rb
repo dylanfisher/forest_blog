@@ -11,8 +11,17 @@
   (100 - Page.count).times do
     Page.create(
       title: Faker::Lorem.words((1..10).to_a.sample).join(' ').titleize,
-      description: Faker::Lorem.paragraph
+      description: Faker::Lorem.paragraph,
     )
+  end
+
+  # Watch out, sometimes this crashes
+  Page.all.each do |page|
+    if rand > 0.7
+      puts page.id
+      page.parent_page_id = Page.where.not(id: page.id).sample.id
+      page.save
+    end
   end
 
   if 'Artist'.safe_constantize
