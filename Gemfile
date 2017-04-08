@@ -45,6 +45,10 @@ gem 'connection_pool'
 group :development, :test do
 end
 
+group :production do
+  gem 'heroku-deflater'
+end
+
 group :development do
   gem 'listen'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
