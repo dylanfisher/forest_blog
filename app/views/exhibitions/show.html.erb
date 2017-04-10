@@ -31,5 +31,5 @@
     <%= @exhibition.status %>
   </p>
 
-  <%= render partial: 'blocks/show', collection: @exhibition.blocks, as: 'block' %>
+  <%= render_blocks @exhibition.blocks %>
 <% end %>
