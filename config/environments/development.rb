@@ -53,4 +53,4 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
 
-Marginalia::Comment.components = [:controller, :action, :line]
+# Marginalia::Comment.components = [:controller, :action, :line]

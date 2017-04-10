@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: 446d75ef3eeaa82df4768d54082da0a1f932619d
+  revision: 731aaf5fb0ab0a400e094ace5d0cd2df36dde29a
   specs:
     forest (0.1.0)
       bootstrap-sass
@@ -155,9 +155,6 @@ GEM
     lumberjack (1.0.11)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
-    marginalia (1.4.0)
-      actionpack (>= 2.3)
-      activerecord (>= 2.3)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -174,7 +171,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
-    paper_trail (7.0.0)
+    paper_trail (7.0.1)
       activerecord (>= 4.0, < 5.2)
       request_store (~> 1.1)
     paperclip (5.1.0)
@@ -282,7 +279,6 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   listen
-  marginalia
   pg
   pry-rails
   puma

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170409172953) do
+ActiveRecord::Schema.define(version: 20170410173750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,9 +191,12 @@ ActiveRecord::Schema.define(version: 20170409172953) do
     t.datetime "updated_at",                    null: false
     t.integer  "featured_image_id"
     t.integer  "parent_page_id"
+    t.text     "path"
     t.index ["featured_image_id"], name: "index_pages_on_featured_image_id", using: :btree
     t.index ["parent_page_id"], name: "index_pages_on_parent_page_id", using: :btree
-    t.index ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
+    t.index ["path"], name: "index_pages_on_path", unique: true, using: :btree
+    t.index ["slug", "parent_page_id"], name: "index_pages_on_slug_and_parent_page_id", using: :btree
+    t.index ["slug"], name: "index_pages_on_slug", using: :btree
     t.index ["status"], name: "index_pages_on_status", using: :btree
   end
 

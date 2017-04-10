@@ -58,5 +58,5 @@ group :development do
   gem 'guard'
   gem 'guard-livereload', require: false
 
-  gem 'marginalia'
+  # gem 'marginalia'
 end
