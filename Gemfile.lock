@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: 731aaf5fb0ab0a400e094ace5d0cd2df36dde29a
+  revision: cbc6e330835e0c21ea8058ab5f56038ef1e982a5
   specs:
     forest (0.1.0)
       bootstrap-sass
@@ -62,7 +62,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
-    autoprefixer-rails (6.7.7.1)
+    autoprefixer-rails (6.7.7.2)
       execjs
     bcrypt (3.1.11)
     bootstrap-sass (3.3.7)
