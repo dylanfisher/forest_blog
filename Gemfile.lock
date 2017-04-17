@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: a18b1190b821e1038496ceda9c9a8b3995c2aa2c
+  revision: e8ca18286960a6795effc9be9d08f31a14c0d514
   specs:
     forest (0.1.0)
       bootstrap-sass
@@ -95,8 +95,8 @@ GEM
     figaro (1.1.1)
       thor (~> 0.14)
     formatador (0.2.5)
-    globalid (0.3.7)
-      activesupport (>= 4.1.0)
+    globalid (0.4.0)
+      activesupport (>= 4.2.0)
     guard (2.14.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
