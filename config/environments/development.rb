@@ -51,6 +51,12 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # config.paperclip_defaults = {
+  #   :storage => :s3,
+  #   :s3_host_name => ENV['S3_HOST_NAME'],
+  #   :bucket => ENV['S3_BUCKET_NAME']
+  # }
 end
 
 # Marginalia::Comment.components = [:controller, :action, :line]

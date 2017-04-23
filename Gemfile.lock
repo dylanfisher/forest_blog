@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: cc0575e15d40b7c6ecc69f9fe12ce4c964de525f
+  revision: 9c7ab3c7dec0d75ac0b0effa4aec0f923466d60c
   specs:
     forest (0.1.0)
       bootstrap-sass
@@ -64,6 +64,14 @@ GEM
     arel (7.1.4)
     autoprefixer-rails (6.7.7.2)
       execjs
+    aws-sdk (2.9.11)
+      aws-sdk-resources (= 2.9.11)
+    aws-sdk-core (2.9.11)
+      aws-sigv4 (~> 1.0)
+      jmespath (~> 1.0)
+    aws-sdk-resources (2.9.11)
+      aws-sdk-core (= 2.9.11)
+    aws-sigv4 (1.0.0)
     bcrypt (3.1.11)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -122,6 +130,7 @@ GEM
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
+    jmespath (1.3.1)
     jquery-fileupload-rails (0.4.7)
       actionpack (>= 3.1)
       railties (>= 3.1)
@@ -269,6 +278,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk
   connection_pool
   dalli
   figaro

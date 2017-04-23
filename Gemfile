@@ -42,6 +42,8 @@ gem 'figaro'
 gem 'dalli'
 gem 'connection_pool'
 
+gem 'aws-sdk'
+
 group :development, :test do
 end
 
