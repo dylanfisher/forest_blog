@@ -52,11 +52,19 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  # config.paperclip_defaults = {
-  #   :storage => :s3,
-  #   :s3_host_name => ENV['S3_HOST_NAME'],
-  #   :bucket => ENV['S3_BUCKET_NAME']
-  # }
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_region => ENV['AWS_REGION'],
+    :s3_credentials => {
+      :bucket => ENV['S3_BUCKET_NAME'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_KEY_ID']
+    },
+    url: ':s3_alias_url',
+    :s3_host_alias => 'forest.dylanfisher.com.s3.us-east-2.amazonaws.com',
+    path: '/:class/:attachment/:id_partition/:style/:filename',
+    :s3_headers => { 'Expires' => 1.year.from_now.httpdate },
+  }
 end
 
 # Marginalia::Comment.components = [:controller, :action, :line]
