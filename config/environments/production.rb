@@ -105,8 +105,8 @@ Rails.application.configure do
       :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
       :secret_access_key => ENV['AWS_SECRET_KEY_ID']
     },
-    # url: ':s3_alias_url',
-    # :s3_host_alias => 'assets.recipebox.io',
+    url: ':s3_alias_url',
+    :s3_host_alias => 'dcgpqqlepqtz2.cloudfront.net',
     path: '/:class/:attachment/:id_partition/:style/:filename',
     :s3_headers => { 'Expires' => 1.year.from_now.httpdate },
   }
