@@ -45,8 +45,7 @@ gem 'connection_pool'
 gem 'aws-sdk'
 
 # Optimize paperclip images
-gem 'image_optim_pack', group: :development
-gem 'image_optim_bin', group: :production
+gem 'image_optim_pack'
 gem 'paperclip-optimizer'
 
 group :production do
