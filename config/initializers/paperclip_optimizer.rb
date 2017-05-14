@@ -7,20 +7,20 @@
 # This way, should a new version add support for a library we do not yet disable here,
 # things won't suddenly break.
 
-Paperclip::PaperclipOptimizer.default_options = {
-  skip_missing_workers: true,
-  advpng: true,
-  gifsicle: true,
-  jhead: true,
-  jpegoptim: true,
-  jpegrecompress: true,
-  jpegtran: true,
-  optipng: true,
-  pngcrush: true,
-  pngout: true,
-  pngquant: true,
-  svgo: true
-}
+# Paperclip::PaperclipOptimizer.default_options = {
+#   skip_missing_workers: true,
+#   advpng: true,
+#   gifsicle: true,
+#   jhead: true,
+#   jpegoptim: true,
+#   jpegrecompress: true,
+#   jpegtran: true,
+#   optipng: true,
+#   pngcrush: true,
+#   pngout: true,
+#   pngquant: true,
+#   svgo: true
+# }
 
 # All available image_optim options. See https://github.com/toy/image_optim for more information
 

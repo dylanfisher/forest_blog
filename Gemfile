@@ -45,8 +45,8 @@ gem 'connection_pool'
 gem 'aws-sdk'
 
 # Optimize paperclip images
-gem 'image_optim_pack'
-gem 'paperclip-optimizer'
+# gem 'image_optim_pack'
+# gem 'paperclip-optimizer'
 
 group :production do
   gem 'heroku-deflater'
