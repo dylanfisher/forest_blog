@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: 435037d20d9be9a3af549e47a307531f98379f86
+  revision: 4667e9919e3c3cc032841fea8046c369127b564a
   specs:
     forest (0.1.0)
       bootstrap-sass
@@ -62,15 +62,15 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (8.0.0)
-    autoprefixer-rails (7.1.1.3)
+    autoprefixer-rails (7.1.2.1)
       execjs
-    aws-sdk (2.10.7)
-      aws-sdk-resources (= 2.10.7)
-    aws-sdk-core (2.10.7)
+    aws-sdk (2.10.9)
+      aws-sdk-resources (= 2.10.9)
+    aws-sdk-core (2.10.9)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.7)
-      aws-sdk-core (= 2.10.7)
+    aws-sdk-resources (2.10.9)
+      aws-sdk-core (= 2.10.9)
     aws-sigv4 (1.0.0)
     bcrypt (3.1.11)
     bootstrap-sass (3.3.7)
@@ -126,7 +126,7 @@ GEM
     heroku-deflater (0.6.3)
       rack (>= 1.4.5)
     http_parser.rb (0.6.0)
-    i18n (0.8.4)
+    i18n (0.8.5)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -236,7 +236,7 @@ GEM
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
     ruby_dep (1.5.0)
-    sass (3.4.24)
+    sass (3.4.25)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
       sass (~> 3.1)
