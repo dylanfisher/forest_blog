@@ -147,26 +147,6 @@ ActiveRecord::Schema.define(version: 20170705035011) do
     t.index ["slug"], name: "index_menus_on_slug", unique: true
   end
 
-  create_table "menus_page_groups", id: false, force: :cascade do |t|
-    t.integer "menu_id", null: false
-    t.integer "page_group_id", null: false
-    t.index ["menu_id", "page_group_id"], name: "index_menus_page_groups_on_menu_id_and_page_group_id"
-    t.index ["page_group_id", "menu_id"], name: "index_menus_page_groups_on_page_group_id_and_menu_id"
-  end
-
-  create_table "page_groups", id: :serial, force: :cascade do |t|
-    t.string "title"
-    t.string "slug"
-    t.integer "level", default: 0, null: false
-    t.integer "page_id"
-    t.integer "parent_page_id"
-    t.integer "ancestor_page_id"
-    t.index ["ancestor_page_id"], name: "index_page_groups_on_ancestor_page_id"
-    t.index ["page_id"], name: "index_page_groups_on_page_id"
-    t.index ["parent_page_id"], name: "index_page_groups_on_parent_page_id"
-    t.index ["slug"], name: "index_page_groups_on_slug"
-  end
-
   create_table "page_slots", id: :serial, force: :cascade do |t|
     t.integer "page_id"
     t.integer "page_version_id"
@@ -193,19 +173,18 @@ ActiveRecord::Schema.define(version: 20170705035011) do
     t.string "title"
     t.string "slug"
     t.text "description"
-    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "featured_image_id"
     t.integer "parent_page_id"
     t.text "path"
+    t.integer "status"
     t.datetime "scheduled_date"
     t.index ["featured_image_id"], name: "index_pages_on_featured_image_id"
     t.index ["parent_page_id"], name: "index_pages_on_parent_page_id"
     t.index ["path"], name: "index_pages_on_path", unique: true
     t.index ["slug", "parent_page_id"], name: "index_pages_on_slug_and_parent_page_id"
     t.index ["slug"], name: "index_pages_on_slug"
-    t.index ["status"], name: "index_pages_on_status"
   end
 
   create_table "settings", id: :serial, force: :cascade do |t|

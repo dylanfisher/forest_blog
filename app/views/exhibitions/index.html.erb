@@ -4,7 +4,7 @@
     select_options: Exhibition.statuses.keys.to_a.collect{ |x| [x.titleize, x] },
     title: 'All Statuses' %>
 <% end %>
-<%= render 'admin/index_header', records: @exhibitions, model_name: 'Exhibition' %>
+<%= render 'admin/headers/index', records: @exhibitions, model_name: 'Exhibition' %>
 
 <div class="table-responsive">
   <table class="table table-striped">

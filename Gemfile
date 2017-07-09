@@ -49,7 +49,7 @@ gem 'aws-sdk'
 # gem 'paperclip-optimizer'
 
 group :production do
-  gem 'heroku-deflater'
+  gem 'heroku-deflater', git: 'git://github.com/romanbsd/heroku-deflater'
   gem 'rack-cors'
 end
 

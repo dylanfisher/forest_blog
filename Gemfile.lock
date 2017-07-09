@@ -1,6 +1,13 @@
 GIT
+  remote: git://github.com/romanbsd/heroku-deflater
+  revision: 41645205533cc17bd5097d7823b0f084c735a285
+  specs:
+    heroku-deflater (0.6.3)
+      rack (>= 1.4.5)
+
+GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: 4667e9919e3c3cc032841fea8046c369127b564a
+  revision: 72543974d263c85fedea14ee8ed5233e9347c329
   specs:
     forest (0.1.0)
       bootstrap-sass
@@ -123,8 +130,6 @@ GEM
     has_scope (0.7.1)
       actionpack (>= 4.1, < 5.2)
       activesupport (>= 4.1, < 5.2)
-    heroku-deflater (0.6.3)
-      rack (>= 1.4.5)
     http_parser.rb (0.6.0)
     i18n (0.8.5)
     jbuilder (2.7.0)
@@ -180,7 +185,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
-    paper_trail (7.0.3)
+    paper_trail (7.1.0)
       activerecord (>= 4.0, < 5.2)
       request_store (~> 1.1)
     paperclip (5.1.0)
@@ -287,7 +292,7 @@ DEPENDENCIES
   forest!
   guard
   guard-livereload
-  heroku-deflater
+  heroku-deflater!
   jbuilder
   jquery-rails
   listen

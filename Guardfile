@@ -19,18 +19,15 @@ guard 'livereload' do
   extensions = {
     css: :css,
     scss: :css,
-    sass: :css,
     js: :js,
-    coffee: :js,
     html: :html,
     png: :png,
     gif: :gif,
     jpg: :jpg,
     jpeg: :jpeg,
-    # less: :less, # uncomment if you want LESS stylesheets done in browser
   }
 
-  rails_view_exts = %w(erb haml slim)
+  rails_view_exts = %w(erb)
 
   # file types LiveReload may optimize refresh for
   compiled_exts = extensions.values.uniq
@@ -51,5 +48,7 @@ guard 'livereload' do
   # file needing a full reload of the page anyway
   watch(%r{app/views/.+\.(#{rails_view_exts * '|'})$})
   watch(%r{app/helpers/.+\.rb})
+  watch(%r{app/models/.+\.rb})
+  watch(%r{app/controllers/.+\.rb})
   watch(%r{config/locales/.+\.yml})
 end
