@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/romanbsd/heroku-deflater
-  revision: 41645205533cc17bd5097d7823b0f084c735a285
+  remote: git://github.com/dylanfisher/heroku-deflater
+  revision: 06746982fc66677033f28007e7f99b9c04835ff7
   specs:
     heroku-deflater (0.6.3)
       rack (>= 1.4.5)
