@@ -29,7 +29,7 @@ class ExhibitionsController < ForestController
     authorize @exhibition
     @version = @exhibition.versions.find(params['version_id'])
     @exhibition = @version.reify
-    @exhibition.reify_page_slots!
+    @exhibition.reify_block_slots!
 
     respond_to do |format|
       if @exhibition.save
@@ -119,7 +119,7 @@ class ExhibitionsController < ForestController
 
     def exhibition_params
       params.require(:exhibition).permit(:title, :slug, :title, :description, :start_date, :end_date, :status, artist_ids: [], artwork_ids: [],
-        page_slots_attributes: [:id, :_destroy, :block_id, :block_type, :block_previous_version_id, :position, :block_record_type, :block_record_id, *BlockType.block_type_params])
+        block_slots_attributes: [:id, :_destroy, :block_id, :block_type, :block_previous_version_id, :position, :block_record_type, :block_record_id, *BlockType.block_type_params])
     end
 
     def set_exhibition
@@ -127,7 +127,7 @@ class ExhibitionsController < ForestController
         # TODO: Published scope
         @exhibition = Exhibition.find_by_slug(params[:id]) # Don't eager load associations when cached in show
       else
-        @exhibition = Exhibition.includes(page_slots: :block).find_by_slug(params[:id])
+        @exhibition = Exhibition.includes(block_slots: :block).find_by_slug(params[:id])
       end
 
       @record = @exhibition

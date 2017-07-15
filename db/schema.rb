@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170705035011) do
+ActiveRecord::Schema.define(version: 20170715030144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,15 +28,15 @@ ActiveRecord::Schema.define(version: 20170705035011) do
   end
 
   create_table "artists_artworks", id: false, force: :cascade do |t|
-    t.integer "artist_id", null: false
-    t.integer "artwork_id", null: false
+    t.bigint "artist_id", null: false
+    t.bigint "artwork_id", null: false
     t.index ["artist_id", "artwork_id"], name: "index_artists_artworks_on_artist_id_and_artwork_id"
     t.index ["artwork_id", "artist_id"], name: "index_artists_artworks_on_artwork_id_and_artist_id"
   end
 
   create_table "artists_exhibitions", id: false, force: :cascade do |t|
-    t.integer "exhibition_id", null: false
-    t.integer "artist_id", null: false
+    t.bigint "exhibition_id", null: false
+    t.bigint "artist_id", null: false
     t.index ["artist_id", "exhibition_id"], name: "index_artists_exhibitions_on_artist_id_and_exhibition_id"
     t.index ["exhibition_id", "artist_id"], name: "index_artists_exhibitions_on_exhibition_id_and_artist_id"
   end
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20170705035011) do
   end
 
   create_table "artworks_exhibitions", id: false, force: :cascade do |t|
-    t.integer "exhibition_id", null: false
-    t.integer "artwork_id", null: false
+    t.bigint "exhibition_id", null: false
+    t.bigint "artwork_id", null: false
     t.index ["artwork_id", "exhibition_id"], name: "index_artworks_exhibitions_on_artwork_id_and_exhibition_id"
     t.index ["exhibition_id", "artwork_id"], name: "index_artworks_exhibitions_on_exhibition_id_and_artwork_id"
   end
@@ -76,6 +76,30 @@ ActiveRecord::Schema.define(version: 20170705035011) do
     t.datetime "updated_at", null: false
     t.index ["block_record_id", "block_record_type"], name: "index_block_records_on_block_record_id_and_block_record_type"
     t.index ["block_record_type", "block_record_id"], name: "index_block_records_on_block_record_type_and_block_record_id"
+  end
+
+  create_table "block_slots", id: :serial, force: :cascade do |t|
+    t.integer "page_id"
+    t.integer "page_version_id"
+    t.integer "block_id"
+    t.string "block_type"
+    t.integer "block_version_id"
+    t.text "block_slot_cache"
+    t.integer "position", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "block_record_type"
+    t.integer "block_record_id"
+    t.string "layout"
+    t.index ["block_id", "block_type"], name: "index_block_slots_on_block_id_and_block_type"
+    t.index ["block_record_id", "block_record_type"], name: "index_block_slots_on_block_record_id_and_block_record_type"
+    t.index ["block_record_type", "block_record_id"], name: "index_block_slots_on_block_record_type_and_block_record_id"
+    t.index ["block_type", "block_id"], name: "index_block_slots_on_block_type_and_block_id"
+    t.index ["block_type", "block_version_id"], name: "index_block_slots_on_block_type_and_block_version_id"
+    t.index ["block_version_id", "block_type"], name: "index_block_slots_on_block_version_id_and_block_type"
+    t.index ["layout"], name: "index_block_slots_on_layout"
+    t.index ["page_id"], name: "index_block_slots_on_page_id"
+    t.index ["page_version_id"], name: "index_block_slots_on_page_version_id"
   end
 
   create_table "block_types", id: :serial, force: :cascade do |t|
@@ -99,18 +123,6 @@ ActiveRecord::Schema.define(version: 20170705035011) do
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_exhibitions_on_slug", unique: true
     t.index ["status"], name: "index_exhibitions_on_status"
-  end
-
-  create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
-    t.string "slug", null: false
-    t.integer "sluggable_id", null: false
-    t.string "sluggable_type", limit: 50
-    t.string "scope"
-    t.datetime "created_at"
-    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
   create_table "image_blocks", id: :serial, force: :cascade do |t|
@@ -147,44 +159,23 @@ ActiveRecord::Schema.define(version: 20170705035011) do
     t.index ["slug"], name: "index_menus_on_slug", unique: true
   end
 
-  create_table "page_slots", id: :serial, force: :cascade do |t|
-    t.integer "page_id"
-    t.integer "page_version_id"
-    t.integer "block_id"
-    t.string "block_type"
-    t.integer "block_version_id"
-    t.text "page_slot_cache"
-    t.integer "position", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "block_record_type"
-    t.integer "block_record_id"
-    t.index ["block_id", "block_type"], name: "index_page_slots_on_block_id_and_block_type"
-    t.index ["block_record_id", "block_record_type"], name: "index_page_slots_on_block_record_id_and_block_record_type"
-    t.index ["block_record_type", "block_record_id"], name: "index_page_slots_on_block_record_type_and_block_record_id"
-    t.index ["block_type", "block_id"], name: "index_page_slots_on_block_type_and_block_id"
-    t.index ["block_type", "block_version_id"], name: "index_page_slots_on_block_type_and_block_version_id"
-    t.index ["block_version_id", "block_type"], name: "index_page_slots_on_block_version_id_and_block_type"
-    t.index ["page_id"], name: "index_page_slots_on_page_id"
-    t.index ["page_version_id"], name: "index_page_slots_on_page_version_id"
-  end
-
   create_table "pages", id: :serial, force: :cascade do |t|
     t.string "title"
     t.string "slug"
     t.text "description"
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "featured_image_id"
     t.integer "parent_page_id"
     t.text "path"
-    t.integer "status"
     t.datetime "scheduled_date"
     t.index ["featured_image_id"], name: "index_pages_on_featured_image_id"
     t.index ["parent_page_id"], name: "index_pages_on_parent_page_id"
     t.index ["path"], name: "index_pages_on_path", unique: true
     t.index ["slug", "parent_page_id"], name: "index_pages_on_slug_and_parent_page_id"
     t.index ["slug"], name: "index_pages_on_slug"
+    t.index ["status"], name: "index_pages_on_status"
   end
 
   create_table "settings", id: :serial, force: :cascade do |t|
@@ -217,8 +208,8 @@ ActiveRecord::Schema.define(version: 20170705035011) do
   end
 
   create_table "user_groups_users", id: false, force: :cascade do |t|
-    t.integer "user_group_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_group_id", null: false
+    t.bigint "user_id", null: false
     t.index ["user_group_id", "user_id"], name: "index_user_groups_users_on_user_group_id_and_user_id"
     t.index ["user_id", "user_group_id"], name: "index_user_groups_users_on_user_id_and_user_group_id"
   end

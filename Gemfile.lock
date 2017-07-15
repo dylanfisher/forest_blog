@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: 72543974d263c85fedea14ee8ed5233e9347c329
+  revision: 002c493dfc7c4bb967093a1d499933eda6c62f84
   specs:
     forest (0.1.0)
       bootstrap-sass
@@ -69,16 +69,16 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (8.0.0)
-    autoprefixer-rails (7.1.2.1)
+    autoprefixer-rails (7.1.2.2)
       execjs
-    aws-sdk (2.10.9)
-      aws-sdk-resources (= 2.10.9)
-    aws-sdk-core (2.10.9)
+    aws-sdk (2.10.12)
+      aws-sdk-resources (= 2.10.12)
+    aws-sdk-core (2.10.12)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.9)
-      aws-sdk-core (= 2.10.9)
-    aws-sigv4 (1.0.0)
+    aws-sdk-resources (2.10.12)
+      aws-sdk-core (= 2.10.12)
+    aws-sigv4 (1.0.1)
     bcrypt (3.1.11)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -104,7 +104,7 @@ GEM
     erubi (1.6.1)
     eventmachine (1.2.3)
     execjs (2.7.0)
-    faker (1.7.3)
+    faker (1.8.4)
       i18n (~> 0.5)
     ffi (1.9.18)
     figaro (1.1.1)
@@ -131,7 +131,7 @@ GEM
       actionpack (>= 4.1, < 5.2)
       activesupport (>= 4.1, < 5.2)
     http_parser.rb (0.6.0)
-    i18n (0.8.5)
+    i18n (0.8.6)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -241,7 +241,11 @@ GEM
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
     ruby_dep (1.5.0)
-    sass (3.4.25)
+    sass (3.5.1)
+      sass-listen (~> 4.0.0)
+    sass-listen (4.0.0)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
       sass (~> 3.1)

@@ -29,7 +29,7 @@ class ArtworksController < ForestController
     authorize @artwork
     @version = @artwork.versions.find(params['version_id'])
     @artwork = @version.reify
-    @artwork.reify_page_slots!
+    @artwork.reify_block_slots!
 
     respond_to do |format|
       if @artwork.save
@@ -119,7 +119,7 @@ class ArtworksController < ForestController
 
     def artwork_params
       params.require(:artwork).permit(:title, :slug, :title, :description, :date, :status, :featured_image_id, artist_ids: [], exhibition_ids: [],
-        page_slots_attributes: [:id, :_destroy, :block_id, :block_type, :block_previous_version_id, :position, :block_record_type, :block_record_id, *BlockType.block_type_params])
+        block_slots_attributes: [:id, :_destroy, :block_id, :block_type, :block_previous_version_id, :position, :block_record_type, :block_record_id, *BlockType.block_type_params])
     end
 
     def set_artwork
@@ -127,7 +127,7 @@ class ArtworksController < ForestController
         # TODO: Published scope
         @artwork = Artwork.find_by_slug(params[:id]) # Don't eager load associations when cached in show
       else
-        @artwork = Artwork.includes(page_slots: :block).find_by_slug(params[:id])
+        @artwork = Artwork.includes(block_slots: :block).find_by_slug(params[:id])
       end
 
       @record = @artwork

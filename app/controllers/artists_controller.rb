@@ -28,7 +28,7 @@ class ArtistsController < ForestController
     authorize @artist
     @version = @artist.versions.find(params['version_id'])
     @artist = @version.reify
-    @artist.reify_page_slots!
+    @artist.reify_block_slots!
 
     respond_to do |format|
       if @artist.save
@@ -118,7 +118,7 @@ class ArtistsController < ForestController
 
     def artist_params
       params.require(:artist).permit(:title, :slug, :first_name, :last_name, :bio, :status, exhibition_ids: [], artwork_ids: [],
-        page_slots_attributes: [:id, :_destroy, :block_id, :block_type, :block_previous_version_id, :position, :block_record_type, :block_record_id, *BlockType.block_type_params])
+        block_slots_attributes: [:id, :_destroy, :block_id, :block_type, :block_previous_version_id, :position, :block_record_type, :block_record_id, *BlockType.block_type_params])
     end
 
     def set_artist
@@ -126,7 +126,7 @@ class ArtistsController < ForestController
         # TODO: Published scope
         @artist = Artist.find_by_slug(params[:id]) # Don't eager load associations when cached in show
       else
-        @artist = Artist.includes(page_slots: :block).find_by_slug(params[:id])
+        @artist = Artist.includes(block_slots: :block).find_by_slug(params[:id])
       end
 
       @record = @artist
