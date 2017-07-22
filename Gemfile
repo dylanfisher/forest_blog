@@ -44,6 +44,9 @@ gem 'connection_pool'
 
 gem 'aws-sdk'
 
+# TODO: does this work on Heroku?
+gem 'bootsnap', require: false
+
 # Optimize paperclip images
 # gem 'image_optim_pack'
 # gem 'paperclip-optimizer'
