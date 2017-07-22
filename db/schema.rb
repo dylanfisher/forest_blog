@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170715030144) do
+ActiveRecord::Schema.define(version: 20170722184955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,18 @@ ActiveRecord::Schema.define(version: 20170715030144) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_block_types_on_name", unique: true
+  end
+
+  create_table "block_versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.integer "item_id", null: false
+    t.integer "block_record_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.datetime "created_at"
+    t.index ["block_record_id"], name: "index_block_versions_on_block_record_id"
+    t.index ["item_type", "item_id"], name: "index_block_versions_on_item_type_and_item_id"
   end
 
   create_table "exhibitions", id: :serial, force: :cascade do |t|
