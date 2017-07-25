@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170722184955) do
+ActiveRecord::Schema.define(version: 20170725012709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,7 +120,11 @@ ActiveRecord::Schema.define(version: 20170722184955) do
     t.string "whodunnit"
     t.text "object"
     t.datetime "created_at"
+    t.integer "block_record_version_id"
+    t.string "block_record_type"
     t.index ["block_record_id"], name: "index_block_versions_on_block_record_id"
+    t.index ["block_record_type"], name: "index_block_versions_on_block_record_type"
+    t.index ["block_record_version_id"], name: "index_block_versions_on_block_record_version_id"
     t.index ["item_type", "item_id"], name: "index_block_versions_on_item_type_and_item_id"
   end
 
