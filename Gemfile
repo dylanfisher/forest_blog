@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'forest', git: 'https://github.com/dylanfisher/forest.git'
+gem 'forest', github: 'dylanfisher/forest'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
@@ -36,7 +36,6 @@ gem 'jbuilder'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'pry-rails'
 gem 'figaro'
 
 gem 'dalli'
@@ -52,11 +51,13 @@ gem 'bootsnap', require: false
 # gem 'paperclip-optimizer'
 
 group :production do
-  gem 'heroku-deflater', git: 'git://github.com/dylanfisher/heroku-deflater'
+  gem 'heroku-deflater', github: 'dylanfisher/heroku-deflater'
   gem 'rack-cors'
 end
 
 group :development do
+  gem 'pry-rails'
+
   gem 'listen'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

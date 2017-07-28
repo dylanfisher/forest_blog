@@ -1,13 +1,6 @@
 GIT
-  remote: git://github.com/dylanfisher/heroku-deflater
-  revision: 9b5144ed73cabdf4d30278845efc2112f6d4bebc
-  specs:
-    heroku-deflater (0.6.3)
-      rack (>= 1.4.5)
-
-GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: 04b05cae91653c141778a7c8da14940590235fe4
+  revision: c0c4c36ef04d070fe680ba4976ce160d2abfbf4f
   specs:
     forest (0.1.0)
       bootstrap-sass
@@ -27,6 +20,13 @@ GIT
       sass-rails
       simple_form
       turbolinks
+
+GIT
+  remote: https://github.com/dylanfisher/heroku-deflater.git
+  revision: 9b5144ed73cabdf4d30278845efc2112f6d4bebc
+  specs:
+    heroku-deflater (0.6.3)
+      rack (>= 1.4.5)
 
 GEM
   remote: https://rubygems.org/
@@ -71,13 +71,13 @@ GEM
     arel (8.0.0)
     autoprefixer-rails (7.1.2.3)
       execjs
-    aws-sdk (2.10.16)
-      aws-sdk-resources (= 2.10.16)
-    aws-sdk-core (2.10.16)
+    aws-sdk (2.10.19)
+      aws-sdk-resources (= 2.10.19)
+    aws-sdk-core (2.10.19)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.16)
-      aws-sdk-core (= 2.10.16)
+    aws-sdk-resources (2.10.19)
+      aws-sdk-core (= 2.10.19)
     aws-sigv4 (1.0.1)
     bcrypt (3.1.11)
     bootsnap (1.1.2)
