@@ -1,4 +1,4 @@
-class Artist < ApplicationRecord
+class Artist < Forest::ApplicationRecord
   include FilterModelScopes
   include Blockable
   include Searchable

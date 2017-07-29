@@ -1,4 +1,4 @@
-class Exhibition < ApplicationRecord
+class Exhibition < Forest::ApplicationRecord
   include FilterModelScopes
   include Blockable
   include Searchable
