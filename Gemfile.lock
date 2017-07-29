@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: b9f14e99c6a533aad5868d5b63c8d9883ea78c52
+  revision: 47a74da6b565261038a0784082c8e439062d97dd
   specs:
     forest (0.1.0)
       bootstrap-sass
