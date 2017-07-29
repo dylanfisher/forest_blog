@@ -18,10 +18,7 @@ class Artist < Forest::ApplicationRecord
   has_and_belongs_to_many :exhibitions
 
   scope :by_name, -> (orderer = :asc) { order(last_name: orderer, first_name: orderer, id: :desc) }
-  # TODO: seeing this error on heroku
-  # ActionView::Template::Error (PG::UndefinedFunction: ERROR:  operator does not exist: || character varying
-  # HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
-  scope :name_or_id_like, -> string { where('(artists.first_name || ' ' || artists.last_name) ILIKE ? OR artists.id = ?', "%#{string}%", string.to_i) }
+  scope :name_or_id_like, -> string { where("(artists.first_name || ' ' || artists.last_name) ILIKE ? OR artists.id = ?", "%#{string}%", string.to_i) }
 
   def name
     [first_name, last_name].reject(&:blank?).join(' ')
