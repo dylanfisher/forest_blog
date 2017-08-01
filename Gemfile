@@ -46,6 +46,9 @@ gem 'aws-sdk'
 # TODO: does this work on Heroku?
 gem 'bootsnap', require: false
 
+# TODO: remove this eventually
+gem 'faker'
+
 group :production do
   gem 'heroku-deflater', github: 'dylanfisher/heroku-deflater'
   gem 'rack-cors'
