@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728025319) do
+ActiveRecord::Schema.define(version: 20170802044856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -259,7 +259,9 @@ ActiveRecord::Schema.define(version: 20170728025319) do
     t.string "whodunnit"
     t.text "object"
     t.datetime "created_at"
+    t.integer "status"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+    t.index ["status"], name: "index_versions_on_status"
   end
 
 end
