@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802044856) do
+ActiveRecord::Schema.define(version: 20170803043245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,20 @@ ActiveRecord::Schema.define(version: 20170802044856) do
     t.index ["block_record_type"], name: "index_block_versions_on_block_record_type"
     t.index ["block_record_version_id"], name: "index_block_versions_on_block_record_version_id"
     t.index ["item_type", "item_id"], name: "index_block_versions_on_item_type_and_item_id"
+  end
+
+  create_table "carousel_block_items", force: :cascade do |t|
+    t.integer "image_id"
+    t.bigint "carousel_block_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["carousel_block_id"], name: "index_carousel_block_items_on_carousel_block_id"
+    t.index ["image_id"], name: "index_carousel_block_items_on_image_id"
+  end
+
+  create_table "carousel_blocks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "exhibitions", id: :serial, force: :cascade do |t|
@@ -264,4 +278,5 @@ ActiveRecord::Schema.define(version: 20170802044856) do
     t.index ["status"], name: "index_versions_on_status"
   end
 
+  add_foreign_key "carousel_block_items", "carousel_blocks"
 end

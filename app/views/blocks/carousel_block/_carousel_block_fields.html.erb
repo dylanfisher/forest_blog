@@ -1,0 +1,9 @@
+<div class='nested-fields'>
+  <%= f.input :image_id,
+                    as: :image,
+                    input_html: {
+                      object: (f.object&.presence || CarouselBlock.new),
+                      value: f.object&.image_id } %>
+
+  <%= link_to_remove_association 'remove item', f, class: 'btn btn-default' %>
+</div>

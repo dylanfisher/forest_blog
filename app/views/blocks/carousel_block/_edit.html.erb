@@ -1,0 +1,11 @@
+<div id="carousel_block_items">
+  <% nested_fields_partial = 'blocks/carousel_block/carousel_block_fields' %>
+
+  <%= block_f.simple_fields_for :carousel_block_items do |item| %>
+    <%= render nested_fields_partial, f: item %>
+  <% end %>
+
+  <div class="links">
+    <%= link_to_add_association 'add item', block_f, :carousel_block_items, partial: nested_fields_partial, class: 'btn btn-primary' %>
+  </div>
+</div>
