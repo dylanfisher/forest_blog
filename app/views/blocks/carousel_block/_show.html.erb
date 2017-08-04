@@ -1,6 +1,10 @@
 <p><%= block.class.name %> <%= block.id %></p>
 <p>Find me in /app/views/blocks/CarouselBlock/_CarouselBlock.html.erb</p>
 
-<% block.carousel_block_items.each do |item| %>
-  <%= responsive_image item.image %>
-<% end %>
+<div style="clear: both;">
+  <% block.carousel_block_items.each do |item| %>
+    <div class="carousel-block__item" style="width: 25%; float: left;">
+      <%= responsive_image item.image %>
+    </div>
+  <% end %>
+</div>

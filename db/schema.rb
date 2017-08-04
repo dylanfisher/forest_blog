@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803043245) do
+ActiveRecord::Schema.define(version: 20170804052527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,6 +176,7 @@ ActiveRecord::Schema.define(version: 20170803043245) do
     t.integer "attachable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "dimensions"
     t.index ["attachable_type", "attachable_id"], name: "index_media_items_on_attachable_type_and_attachable_id"
     t.index ["slug"], name: "index_media_items_on_slug", unique: true
   end
