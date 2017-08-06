@@ -1,7 +1,6 @@
-# This migration comes from forest (originally 20161217191001)
 # This migration creates the `versions` table, the only schema PT requires.
 # All other migrations PT provides are optional.
-class CreateVersions < ActiveRecord::Migration[5.0]
+class CreateVersions < ActiveRecord::Migration[4.2]
   # Class names of MySQL adapters.
   # - `MysqlAdapter` - Used by gems: `mysql`, `activerecord-jdbcmysql-adapter`.
   # - `Mysql2Adapter` - Used by `mysql2` gem.
@@ -22,7 +21,8 @@ class CreateVersions < ActiveRecord::Migration[5.0]
       t.integer  :item_id,   null: false
       t.string   :event,     null: false
       t.string   :whodunnit
-      t.text     :object, limit: TEXT_BYTES
+      t.jsonb    :object
+      t.jsonb    :block_slots
 
       # Known issue in MySQL: fractional second precision
       # -------------------------------------------------
@@ -40,6 +40,7 @@ class CreateVersions < ActiveRecord::Migration[5.0]
       t.datetime :created_at
     end
     add_index :versions, [:item_type, :item_id]
+    add_index :versions, :block_slots, using: :gin
   end
 
   private

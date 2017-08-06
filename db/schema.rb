@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804052527) do
+ActiveRecord::Schema.define(version: 20170805235821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,39 +67,36 @@ ActiveRecord::Schema.define(version: 20170804052527) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "block_records", id: :serial, force: :cascade do |t|
-    t.string "block_record_type"
-    t.integer "block_record_id"
-    t.text "slot_cache"
-    t.text "block_cache"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["block_record_id", "block_record_type"], name: "index_block_records_on_block_record_id_and_block_record_type"
-    t.index ["block_record_type", "block_record_id"], name: "index_block_records_on_block_record_type_and_block_record_id"
+  create_table "block_slot_versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.integer "item_id", null: false
+    t.integer "block_record_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.jsonb "object"
+    t.jsonb "blocks"
+    t.datetime "created_at"
+    t.index ["block_record_id"], name: "index_block_slot_versions_on_block_record_id"
+    t.index ["blocks"], name: "index_block_slot_versions_on_blocks", using: :gin
+    t.index ["item_type", "item_id"], name: "index_block_slot_versions_on_item_type_and_item_id"
   end
 
   create_table "block_slots", id: :serial, force: :cascade do |t|
-    t.integer "page_id"
-    t.integer "page_version_id"
     t.integer "block_id"
     t.string "block_type"
+    t.string "block_record_type"
+    t.integer "block_record_id"
     t.integer "block_version_id"
-    t.text "block_slot_cache"
     t.integer "position", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "block_record_type"
-    t.integer "block_record_id"
     t.string "layout"
     t.index ["block_id", "block_type"], name: "index_block_slots_on_block_id_and_block_type"
-    t.index ["block_record_id", "block_record_type"], name: "index_block_slots_on_block_record_id_and_block_record_type"
     t.index ["block_record_type", "block_record_id"], name: "index_block_slots_on_block_record_type_and_block_record_id"
     t.index ["block_type", "block_id"], name: "index_block_slots_on_block_type_and_block_id"
     t.index ["block_type", "block_version_id"], name: "index_block_slots_on_block_type_and_block_version_id"
     t.index ["block_version_id", "block_type"], name: "index_block_slots_on_block_version_id_and_block_type"
     t.index ["layout"], name: "index_block_slots_on_layout"
-    t.index ["page_id"], name: "index_block_slots_on_page_id"
-    t.index ["page_version_id"], name: "index_block_slots_on_page_version_id"
   end
 
   create_table "block_types", id: :serial, force: :cascade do |t|
@@ -110,22 +107,6 @@ ActiveRecord::Schema.define(version: 20170804052527) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_block_types_on_name", unique: true
-  end
-
-  create_table "block_versions", force: :cascade do |t|
-    t.string "item_type", null: false
-    t.integer "item_id", null: false
-    t.integer "block_record_id", null: false
-    t.string "event", null: false
-    t.string "whodunnit"
-    t.text "object"
-    t.datetime "created_at"
-    t.integer "block_record_version_id"
-    t.string "block_record_type"
-    t.index ["block_record_id"], name: "index_block_versions_on_block_record_id"
-    t.index ["block_record_type"], name: "index_block_versions_on_block_record_type"
-    t.index ["block_record_version_id"], name: "index_block_versions_on_block_record_version_id"
-    t.index ["item_type", "item_id"], name: "index_block_versions_on_item_type_and_item_id"
   end
 
   create_table "carousel_block_items", force: :cascade do |t|
@@ -272,11 +253,11 @@ ActiveRecord::Schema.define(version: 20170804052527) do
     t.integer "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
-    t.text "object"
+    t.jsonb "object"
+    t.jsonb "block_slots"
     t.datetime "created_at"
-    t.integer "status"
+    t.index ["block_slots"], name: "index_versions_on_block_slots", using: :gin
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
-    t.index ["status"], name: "index_versions_on_status"
   end
 
   add_foreign_key "carousel_block_items", "carousel_blocks"
