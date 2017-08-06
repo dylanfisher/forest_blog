@@ -13,10 +13,12 @@ class CreateBlockSlotVersions < ActiveRecord::Migration[5.1]
     create_table :block_slot_versions do |t|
       t.string   :item_type, {:null=>false}
       t.integer  :item_id,   null: false
-      t.integer  :block_record_id, null: false
+      t.integer  :block_record_version
+      t.references :block_record, polymorphic: true, index: { name: 'index_block_slot_version_on_block_record' }
       t.string   :event,     null: false
       t.string   :whodunnit
       t.jsonb    :object
+      t.jsonb    :object_changes
       t.jsonb    :blocks
 
       # Known issue in MySQL: fractional second precision
@@ -35,6 +37,7 @@ class CreateBlockSlotVersions < ActiveRecord::Migration[5.1]
       t.datetime :created_at
     end
     add_index :block_slot_versions, %i(item_type item_id)
+    add_index :block_slot_versions, :block_record_version
     add_index :block_slot_versions, :block_record_id
     add_index :block_slot_versions, :blocks, using: :gin
   end

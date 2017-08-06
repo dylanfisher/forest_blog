@@ -57,12 +57,10 @@ class ArtworksController < ForestController
   def new
     @artwork = Artwork.new
     authorize @artwork
-    set_block_record
   end
 
   def edit
     authorize @artwork
-    set_block_record
   end
 
   def create
@@ -76,7 +74,7 @@ class ArtworksController < ForestController
 
     respond_to do |format|
       if @artwork.valid?
-        save_page @artwork
+        save_record @artwork
         format.html { redirect_to edit_artwork_path(@artwork), notice: 'Artwork was successfully created.' }
         format.json { render :show, status: :created, location: @artwork }
       else
@@ -96,7 +94,7 @@ class ArtworksController < ForestController
 
     respond_to do |format|
       if @artwork.valid?
-        save_page @artwork
+        save_record @artwork
         format.html { redirect_to edit_artwork_path(@artwork), notice: 'Artwork was successfully updated.' }
         format.json { render :show, status: :ok, location: @artwork }
       else
@@ -141,9 +139,4 @@ class ArtworksController < ForestController
         raise ActiveRecord::RecordNotFound
       end
     end
-
-    def set_block_record
-      @block_record = @artwork.block_record || @artwork.build_block_record
-    end
-
 end

@@ -1,4 +1,4 @@
-# This migration comes from forest (originally 20161217191000)
+# This migration comes from forest_engine (originally 20161217191000)
 class DeviseCreateUsers < ActiveRecord::Migration[5.0]
   def change
     create_table :users do |t|
@@ -34,6 +34,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :first_name
       t.string :last_name
       t.string :slug
+
+      t.text :settings, null: false, default: {}.to_json
 
       t.timestamps null: false
     end

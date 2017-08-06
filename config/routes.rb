@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   scope :admin do
-    resources :artists
-    resources :artworks
-    resources :exhibitions
+    # resources :artists
+    # resources :artworks
+    # resources :exhibitions
   end
 
   # TODO: polymorphic path for versions to live in engine?

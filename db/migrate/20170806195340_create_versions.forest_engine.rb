@@ -1,3 +1,4 @@
+# This migration comes from forest_engine (originally 20161217191001)
 # This migration creates the `versions` table, the only schema PT requires.
 # All other migrations PT provides are optional.
 class CreateVersions < ActiveRecord::Migration[4.2]
@@ -22,7 +23,8 @@ class CreateVersions < ActiveRecord::Migration[4.2]
       t.string   :event,     null: false
       t.string   :whodunnit
       t.jsonb    :object
-      t.jsonb    :block_slots
+      t.jsonb    :object_changes
+      t.jsonb    :block_slots # TODO: DF 08/06/17 - not sure if it makes sense to store this here
 
       # Known issue in MySQL: fractional second precision
       # -------------------------------------------------

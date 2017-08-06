@@ -56,12 +56,10 @@ class ArtistsController < ForestController
   def new
     @artist = Artist.new
     authorize @artist
-    set_block_record
   end
 
   def edit
     authorize @artist
-    set_block_record
   end
 
   def create
@@ -75,7 +73,7 @@ class ArtistsController < ForestController
 
     respond_to do |format|
       if @artist.valid?
-        save_page @artist
+        save_record @artist
         format.html { redirect_to edit_artist_path(@artist), notice: 'Artist was successfully created.' }
         format.json { render :show, status: :created, location: @artist }
       else
@@ -95,7 +93,7 @@ class ArtistsController < ForestController
 
     respond_to do |format|
       if @artist.valid?
-        save_page @artist
+        save_record @artist
         format.html { redirect_to edit_artist_path(@artist), notice: 'Artist was successfully updated.' }
         format.json { render :show, status: :ok, location: @artist }
       else
@@ -140,9 +138,4 @@ class ArtistsController < ForestController
         raise ActiveRecord::RecordNotFound
       end
     end
-
-    def set_block_record
-      @block_record = @artist.block_record || @artist.build_block_record
-    end
-
 end

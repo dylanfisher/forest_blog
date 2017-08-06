@@ -57,12 +57,10 @@ class ExhibitionsController < ForestController
   def new
     @exhibition = Exhibition.new
     authorize @exhibition
-    set_block_record
   end
 
   def edit
     authorize @exhibition
-    set_block_record
   end
 
   def create
@@ -76,7 +74,7 @@ class ExhibitionsController < ForestController
 
     respond_to do |format|
       if @exhibition.valid?
-        save_page @exhibition
+        save_record @exhibition
         format.html { redirect_to edit_exhibition_path(@exhibition), notice: 'Exhibition was successfully created.' }
         format.json { render :show, status: :created, location: @exhibition }
       else
@@ -96,7 +94,7 @@ class ExhibitionsController < ForestController
 
     respond_to do |format|
       if @exhibition.valid?
-        save_page @exhibition
+        save_record @exhibition
         format.html { redirect_to edit_exhibition_path(@exhibition), notice: 'Exhibition was successfully updated.' }
         format.json { render :show, status: :ok, location: @exhibition }
       else
@@ -141,9 +139,4 @@ class ExhibitionsController < ForestController
         raise ActiveRecord::RecordNotFound
       end
     end
-
-    def set_block_record
-      @block_record = @exhibition.block_record || @exhibition.build_block_record
-    end
-
 end
