@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806195354) do
+ActiveRecord::Schema.define(version: 20170810040457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,25 +18,6 @@ ActiveRecord::Schema.define(version: 20170806195354) do
   create_table "base_blocks", id: :serial, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "block_slot_versions", force: :cascade do |t|
-    t.string "item_type", null: false
-    t.integer "item_id", null: false
-    t.integer "block_record_version"
-    t.string "block_record_type"
-    t.bigint "block_record_id"
-    t.string "event", null: false
-    t.string "whodunnit"
-    t.jsonb "object"
-    t.jsonb "object_changes"
-    t.jsonb "blocks"
-    t.datetime "created_at"
-    t.index ["block_record_id"], name: "index_block_slot_versions_on_block_record_id"
-    t.index ["block_record_type", "block_record_id"], name: "index_block_slot_version_on_block_record"
-    t.index ["block_record_version"], name: "index_block_slot_versions_on_block_record_version"
-    t.index ["blocks"], name: "index_block_slot_versions_on_blocks", using: :gin
-    t.index ["item_type", "item_id"], name: "index_block_slot_versions_on_item_type_and_item_id"
   end
 
   create_table "block_slots", id: :serial, force: :cascade do |t|
@@ -64,22 +45,24 @@ ActiveRecord::Schema.define(version: 20170806195354) do
     t.index ["name"], name: "index_block_types_on_name", unique: true
   end
 
-  create_table "block_versions", force: :cascade do |t|
-    t.string "item_type", null: false
-    t.integer "item_id", null: false
-    t.integer "block_record_version"
-    t.string "event", null: false
-    t.string "whodunnit"
-    t.jsonb "object"
-    t.jsonb "object_changes"
-    t.datetime "created_at"
-    t.index ["block_record_version"], name: "index_block_versions_on_block_record_version"
-    t.index ["item_type", "item_id"], name: "index_block_versions_on_item_type_and_item_id"
-  end
-
   create_table "image_blocks", id: :serial, force: :cascade do |t|
     t.integer "image_id"
     t.text "caption"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "image_gallery_block_images", force: :cascade do |t|
+    t.bigint "image_gallery_block_id"
+    t.bigint "image_id"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["image_gallery_block_id"], name: "index_image_gallery_block_images_on_image_gallery_block_id"
+    t.index ["image_id"], name: "index_image_gallery_block_images_on_image_id"
+  end
+
+  create_table "image_gallery_blocks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -189,17 +172,5 @@ ActiveRecord::Schema.define(version: 20170806195354) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
-  create_table "versions", id: :serial, force: :cascade do |t|
-    t.string "item_type", null: false
-    t.integer "item_id", null: false
-    t.string "event", null: false
-    t.string "whodunnit"
-    t.jsonb "object"
-    t.jsonb "object_changes"
-    t.jsonb "block_slots"
-    t.datetime "created_at"
-    t.index ["block_slots"], name: "index_versions_on_block_slots", using: :gin
-    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
-  end
-
+  add_foreign_key "image_gallery_block_images", "image_gallery_blocks"
 end
