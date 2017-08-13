@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20170812161938) do
   create_table "image_gallery_block_images", force: :cascade do |t|
     t.bigint "image_gallery_block_id"
     t.bigint "image_id"
-    t.integer "position"
+    t.integer "position", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["image_gallery_block_id"], name: "index_image_gallery_block_images_on_image_gallery_block_id"
