@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170813173154) do
+ActiveRecord::Schema.define(version: 20170818025528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,20 +30,29 @@ ActiveRecord::Schema.define(version: 20170813173154) do
     t.index ["name"], name: "index_block_kinds_on_name", unique: true
   end
 
+  create_table "block_layouts", force: :cascade do |t|
+    t.string "slug"
+    t.string "display_name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_block_layouts_on_slug"
+  end
+
   create_table "block_slots", id: :serial, force: :cascade do |t|
     t.string "block_type"
     t.integer "block_id"
     t.integer "block_kind_id"
     t.string "block_record_type"
     t.integer "block_record_id"
-    t.string "layout"
     t.integer "position", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "block_layout_id"
     t.index ["block_kind_id"], name: "index_block_slots_on_block_kind_id"
+    t.index ["block_layout_id"], name: "index_block_slots_on_block_layout_id"
     t.index ["block_record_type", "block_record_id"], name: "index_block_slots_on_block_record_type_and_block_record_id"
     t.index ["block_type", "block_id"], name: "index_block_slots_on_block_type_and_block_id"
-    t.index ["layout"], name: "index_block_slots_on_layout"
   end
 
   create_table "image_blocks", id: :serial, force: :cascade do |t|
@@ -174,5 +183,6 @@ ActiveRecord::Schema.define(version: 20170813173154) do
   end
 
   add_foreign_key "block_slots", "block_kinds"
+  add_foreign_key "block_slots", "block_layouts"
   add_foreign_key "image_gallery_block_images", "image_gallery_blocks"
 end

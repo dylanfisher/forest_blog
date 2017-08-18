@@ -30,14 +30,10 @@ gem 'turbolinks'
 gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 gem 'figaro'
 
+# TODO: use redis instead of dalli?
 gem 'dalli'
 gem 'connection_pool'
 
