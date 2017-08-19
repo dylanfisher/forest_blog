@@ -1,2 +1,0 @@
-class ExhibitionPolicy < BlockRecordPolicy
-end

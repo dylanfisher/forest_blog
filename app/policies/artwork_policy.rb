@@ -1,2 +1,0 @@
-class ArtworkPolicy < BlockRecordPolicy
-end

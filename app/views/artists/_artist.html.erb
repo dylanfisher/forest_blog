@@ -1,4 +1,0 @@
-<%= content_tag :div, class: 'artist' do %>
-  <%= content_tag :p, link_to(artist.name, show_artist_path(artist)) %>
-  <%= content_tag :p, md(artist.bio) if artist.bio.present? %>
-<% end %>
