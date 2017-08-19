@@ -4,7 +4,7 @@ class Artwork < Forest::ApplicationRecord
   include Searchable
   include Statusable
 
-  has_paper_trail
+  # has_paper_trail
 
   before_validation :generate_slug
 
