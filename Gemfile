@@ -60,6 +60,7 @@ group :development do
   # Guard is a command line tool to easily handle events on file system modifications. http://guardgem.org
   gem 'guard'
   gem 'guard-livereload', require: false
+  gem 'rails-erd', require: false
 
   # gem 'marginalia'
 end
