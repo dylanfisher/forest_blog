@@ -31,6 +31,8 @@ gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis'
 
+gem 'autoprefixer-rails'
+
 gem 'figaro'
 
 # TODO: use redis instead of dalli?

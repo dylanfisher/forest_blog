@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: ec9a8eb776bc8e6b059f0d88c6cf99cb9e8ecb84
+  revision: f438b75140607307d5dccc09577c0a11ec570c55
   specs:
     forest (0.1.0)
       bootstrap-sass
@@ -68,13 +68,13 @@ GEM
     arel (8.0.0)
     autoprefixer-rails (7.1.2.6)
       execjs
-    aws-sdk (2.10.29)
-      aws-sdk-resources (= 2.10.29)
-    aws-sdk-core (2.10.29)
+    aws-sdk (2.10.34)
+      aws-sdk-resources (= 2.10.34)
+    aws-sdk-core (2.10.34)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.29)
-      aws-sdk-core (= 2.10.29)
+    aws-sdk-resources (2.10.34)
+      aws-sdk-core (= 2.10.34)
     aws-sigv4 (1.0.1)
     bcrypt (3.1.11)
     bootsnap (1.1.2)
@@ -290,6 +290,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   aws-sdk
   bootsnap
   connection_pool
