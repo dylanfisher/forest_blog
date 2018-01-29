@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170826173857) do
+ActiveRecord::Schema.define(version: 20180129201341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170826173857) do
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category"], name: "index_block_kinds_on_category"
     t.index ["name"], name: "index_block_kinds_on_name", unique: true
   end
 
@@ -55,28 +56,6 @@ ActiveRecord::Schema.define(version: 20170826173857) do
     t.index ["block_type", "block_id"], name: "index_block_slots_on_block_type_and_block_id"
   end
 
-  create_table "image_blocks", id: :serial, force: :cascade do |t|
-    t.integer "image_id"
-    t.text "caption"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "image_gallery_block_images", force: :cascade do |t|
-    t.bigint "image_gallery_block_id"
-    t.bigint "image_id"
-    t.integer "position", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["image_gallery_block_id"], name: "index_image_gallery_block_images_on_image_gallery_block_id"
-    t.index ["image_id"], name: "index_image_gallery_block_images_on_image_id"
-  end
-
-  create_table "image_gallery_blocks", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "media_items", id: :serial, force: :cascade do |t|
     t.string "title"
     t.string "slug"
@@ -93,6 +72,7 @@ ActiveRecord::Schema.define(version: 20170826173857) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["attachable_type", "attachable_id"], name: "index_media_items_on_attachable_type_and_attachable_id"
+    t.index ["attachment_content_type"], name: "index_media_items_on_attachment_content_type"
     t.index ["slug"], name: "index_media_items_on_slug", unique: true
   end
 
@@ -132,18 +112,6 @@ ActiveRecord::Schema.define(version: 20170826173857) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_settings_on_slug", unique: true
-  end
-
-  create_table "text_blocks", id: :serial, force: :cascade do |t|
-    t.text "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "title_blocks", id: :serial, force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "translations", force: :cascade do |t|
@@ -193,5 +161,4 @@ ActiveRecord::Schema.define(version: 20170826173857) do
 
   add_foreign_key "block_slots", "block_kinds"
   add_foreign_key "block_slots", "block_layouts"
-  add_foreign_key "image_gallery_block_images", "image_gallery_blocks"
 end
