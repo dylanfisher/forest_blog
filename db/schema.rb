@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129201341) do
+ActiveRecord::Schema.define(version: 20180303192817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,22 @@ ActiveRecord::Schema.define(version: 20180129201341) do
     t.index ["block_layout_id"], name: "index_block_slots_on_block_layout_id"
     t.index ["block_record_type", "block_record_id"], name: "index_block_slots_on_block_record_type_and_block_record_id"
     t.index ["block_type", "block_id"], name: "index_block_slots_on_block_type_and_block_id"
+  end
+
+  create_table "cache_records", id: :serial, force: :cascade do |t|
+    t.integer "cacheable_id"
+    t.string "cacheable_type"
+    t.jsonb "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cacheable_type", "cacheable_id"], name: "index_cache_records_on_type_and_id"
+  end
+
+  create_table "image_blocks", force: :cascade do |t|
+    t.bigint "media_item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["media_item_id"], name: "index_image_blocks_on_media_item_id"
   end
 
   create_table "media_items", id: :serial, force: :cascade do |t|
@@ -114,6 +130,18 @@ ActiveRecord::Schema.define(version: 20180129201341) do
     t.index ["slug"], name: "index_settings_on_slug", unique: true
   end
 
+  create_table "text_blocks", force: :cascade do |t|
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "title_blocks", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "translations", force: :cascade do |t|
     t.string "key", null: false
     t.text "value", null: false
@@ -131,8 +159,8 @@ ActiveRecord::Schema.define(version: 20180129201341) do
   end
 
   create_table "user_groups_users", id: false, force: :cascade do |t|
-    t.bigint "user_group_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "user_group_id", null: false
+    t.integer "user_id", null: false
     t.index ["user_group_id", "user_id"], name: "index_user_groups_users_on_user_group_id_and_user_id"
     t.index ["user_id", "user_group_id"], name: "index_user_groups_users_on_user_id_and_user_group_id"
   end
@@ -161,4 +189,5 @@ ActiveRecord::Schema.define(version: 20180129201341) do
 
   add_foreign_key "block_slots", "block_kinds"
   add_foreign_key "block_slots", "block_layouts"
+  add_foreign_key "image_blocks", "media_items"
 end
