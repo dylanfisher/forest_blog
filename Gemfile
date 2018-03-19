@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.4.1'
+ruby '2.5.0'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -8,43 +8,18 @@ git_source(:github) do |repo_name|
 end
 
 gem 'forest', github: 'dylanfisher/forest'
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails'
-# Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
-# Use Puma as the app server
+gem 'rails', '~> 5.1.5'
+gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma'
-# Use SCSS for stylesheets
-gem 'sass-rails'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis'
-
+gem 'jbuilder', '~> 2.5'
 gem 'autoprefixer-rails'
-
 gem 'figaro'
-
-# TODO: use redis instead of dalli?
 gem 'dalli'
 gem 'connection_pool'
-
-gem 'aws-sdk'
-
-# TODO: does this work on Heroku?
 gem 'bootsnap', require: false
-
-# TODO: remove this eventually
 gem 'faker'
 
 group :production do
