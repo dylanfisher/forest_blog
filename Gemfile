@@ -8,13 +8,13 @@ git_source(:github) do |repo_name|
 end
 
 gem 'forest', github: 'dylanfisher/forest'
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.2.0'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails'
+gem 'uglifier'
 gem 'jquery-rails'
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder'
 gem 'autoprefixer-rails'
 gem 'figaro'
 gem 'dalli'
@@ -29,15 +29,12 @@ end
 
 group :development do
   gem 'pry-rails'
-
   gem 'listen'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen'
   # Guard is a command line tool to easily handle events on file system modifications. http://guardgem.org
-  gem 'guard'
-  gem 'guard-livereload', require: false
-  gem 'rails-erd', require: false
-
+  # gem 'guard'
+  # gem 'guard-livereload', require: false
   # gem 'marginalia'
 end

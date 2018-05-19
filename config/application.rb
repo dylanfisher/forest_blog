@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module ForestBlog
   class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.0
+
     config.autoload_paths << "#{config.root}/app/models/blocks"
 
     # Settings in config/environments/* take precedence over those specified here.
