@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180303192817) do
+ActiveRecord::Schema.define(version: 20180808204536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,12 +83,12 @@ ActiveRecord::Schema.define(version: 20180303192817) do
     t.string "attachment_content_type"
     t.integer "attachment_file_size"
     t.datetime "attachment_updated_at"
-    t.string "attachable_type"
-    t.integer "attachable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["attachable_type", "attachable_id"], name: "index_media_items_on_attachable_type_and_attachable_id"
+    t.integer "media_item_status", default: 0
     t.index ["attachment_content_type"], name: "index_media_items_on_attachment_content_type"
+    t.index ["created_at"], name: "index_media_items_on_created_at"
+    t.index ["media_item_status"], name: "index_media_items_on_media_item_status"
     t.index ["slug"], name: "index_media_items_on_slug", unique: true
   end
 
@@ -112,6 +112,9 @@ ActiveRecord::Schema.define(version: 20180303192817) do
     t.datetime "updated_at", null: false
     t.integer "featured_image_id"
     t.integer "parent_page_id"
+    t.string "redirect"
+    t.jsonb "blockable_metadata", default: {}
+    t.index ["blockable_metadata"], name: "index_pages_on_blockable_metadata", using: :gin
     t.index ["featured_image_id"], name: "index_pages_on_featured_image_id"
     t.index ["parent_page_id"], name: "index_pages_on_parent_page_id"
     t.index ["path"], name: "index_pages_on_path", unique: true
